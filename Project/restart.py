@@ -99,8 +99,6 @@ def add_emp():
         return redirect('/employee_section')
 
 
-from flask import request, jsonify
-
 @app.route("/add_leave", methods=['POST'])
 def add_leave():
     data = request.get_json()  # Get JSON data from the request
