@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminpage/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    {% extends "admin/admin_dash.html" %}
+    {% block content %}
+
+    <div class="main-content">
+
+        <!-- Admin Management Section -->
+        <div id="admin-management-section">
+            <h3>Admin Management</h3>
+
+            <!-- Add Admin Button -->
+            <button id="add-admin-btn" class="add-btn">Add Admin</button>
+
+            <!-- Form to Add New Admin (Initially Hidden) -->
+            <div id="add-admin-form" style="display:none; margin-top: 10px;">
+                <form method="POST">
+                    <label for="admin-name">Name:</label>
+                    <input type="text" id="admin-name" name="admin-name" placeholder="Enter admin name" required>
+                    
+                    <label for="admin-email">Email:</label>
+                    <input type="email" id="admin-email" name="admin-email" placeholder="Enter admin email" required>
+
+                    <label for="admin-password">Password:</label> <!-- Add password input -->
+                    <input type="password" id="admin-password" name="admin-password" placeholder="Enter password" required>
+                    
+                    <button type="submit" class="save-btn">Save Admin</button>
+                </form>
+            </div>
+
+            <!-- Admin List Table -->
+            <table class="operations-table">
+                <thead>
+                    <tr>
+                        <th>Admin Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                    <tr>
+                        <td>John Admin</td>
+                        <td>john.admin@example.com</td>
+                        <td><button class="remove-btn">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Admin</td>
+                        <td>jane.admin@example.com</td>
+                        <td><button class="remove-btn">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Toggle the add admin form
+        document.getElementById('add-admin-btn').addEventListener('click', function() {
+            const form = document.getElementById('add-admin-form');
+            form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+        });
+
+        // Add functionality to remove existing admins
+        const removeButtons = document.querySelectorAll('.remove-btn');
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr'); // Find the closest row to the button
+                row.remove(); // Remove the row from the table
+            });
+        });
+    </script>
+
+    {% endblock %}
+</body>
+</html>

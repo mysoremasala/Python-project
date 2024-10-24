@@ -1,0 +1,33 @@
+{% extends "employee/empindex.html" %}
+
+{% block content %}
+<div class="pending-leaves">
+    <h3>Your Applied Leaves</h3>
+    <table class="leaves-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Leave Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leave in leaves %}
+            <tr>
+                <td>{{ leave.date }}</td>
+                <td>{{ leave.leave_type }}</td>
+                <td>
+                    {% if leave.status == 'Approved' %}
+                    <span class="status approved">Approved</span>
+                    {% elif leave.status == 'Rejected' %}
+                    <span class="status rejected">Rejected</span>
+                    {% else %}
+                    <span class="status pending">Pending</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

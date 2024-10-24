@@ -1,0 +1,70 @@
+{% extends "employee/empindex.html" %}
+
+{% block content %}
+<div class="dashboard-cards">
+    <div class="card" data-table="pending-leaves-table">
+      <i class="fas fa-briefcase"></i>
+      <div class="info">
+        <h3>Pending Leaves</h3>
+        <p>12</p>
+      </div>
+    </div>
+    <div class="card" data-table="approved-leaves-table">
+      <i class="fas fa-users"></i>
+      <div class="info">
+        <h3>Approved Leaves</h3>
+        <p>8</p>
+      </div>
+    </div>
+    <div class="card" data-table="rejected-leaves-table">
+      <i class="fas fa-th-large"></i>
+      <div class="info">
+        <h3>Rejected Leaves</h3>
+        <p>5</p>
+      </div>
+    </div>
+  </div>
+<div class="leave-form">
+  <h3>Apply for a Leave</h3>
+  <form method="POST">
+    <label for="leave-type">Leave Type:</label>
+    <select id="leave-type" name="leave-type">
+      <option value="sick">Sick Leave</option>
+      <option value="casual">Casual Leave</option>
+      <option value="vacation">Vacation Leave</option>
+      <option value="other">Other</option>
+    </select>
+
+    <div id="other-reason-section" style="display: none;">
+      <label for="other-reason">Reason for Other Leave:</label>
+      <textarea id="other-reason" name="other-reason"></textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Display flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flash-messages">
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<script>
+  const leaveType = document.getElementById('leave-type');
+  const otherReasonSection = document.getElementById('other-reason-section');
+
+  leaveType.addEventListener('change', function() {
+    if (this.value === 'other') {
+      otherReasonSection.style.display = 'block';
+    } else {
+      otherReasonSection.style.display = 'none';
+    }
+  });
+</script>
+{% endblock %}

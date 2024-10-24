@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='homepage/main.js') }}" defer></script>
+</head>
+<body>
+
+{% extends "admin/admin_dash.html" %}
+
+  {% block content %}
+  <div id="employee-list" style="display:visible;">
+    <h3>Employee List</h3>
+  
+    <!-- Add Employee Form -->
+    <form id="employee-form" method="POST" action="/add_employee">
+      <label for="employee-name">Name:</label>
+      <input type="text" id="employee-name" name="employee-name" placeholder="Enter employee name" required>
+
+      <label for="employee-department">Department:</label>
+      <input type="text" id="employee-department" name="employee-department" placeholder="Enter department" required>
+
+      <label for="employee-position">Position:</label>
+      <input type="text" id="employee-position" name="employee-position" placeholder="Enter position" required>
+
+      <label for="employee-email">Email:</label>
+      <input type="email" id="employee-email" name="employee-email" placeholder="Enter email" required>
+
+      <button type="submit" class="save-btn">Save Employee</button>
+  </form>
+
+  
+      <!-- Employee List Table -->
+      <table class="operations-table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Position</th>
+                  <th>Email</th>
+                  <th>Action</th> <!-- Action column for Remove button -->
+              </tr>
+          </thead>
+          <tbody>
+            {% for id, employee in employees.items() %}
+              <tr>
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.department }}</td>
+                  <td>{{ employee.position }}</td>
+                  <td>{{ employee.email }}</td>
+                  <td><a href="#" class="remove-btn">Remove</a></td>
+              </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+  </div>
+  {% endblock %}
+  
+</body>
+<script>
+    document.getElementById('employee-form').addEventListener('submit', async function(event) {
+    event.preventDefault();  // Prevent the default form submission
+
+    const formData = new FormData(this);  // Get the form data
+
+    // Send the form data via POST request
+    try {
+        const response = await fetch('/add_employee', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result.message);  // Log the success message
+        } else {
+            console.log('Failed to add employee');
+        }
+    } catch (error) {
+        console.error('Error during form submission:', error);
+    }
+});
+</script>
+</html>

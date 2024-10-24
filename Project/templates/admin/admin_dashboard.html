@@ -1,0 +1,130 @@
+{% extends "admin/admin_dash.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-cards">
+    <div class="card" data-table="pending-leaves-table">
+      <i class="fas fa-briefcase"></i>
+      <div class="info">
+        <h3>Pending Leaves</h3>
+        <p>12</p>
+      </div>
+    </div>
+    <div class="card" data-table="approved-leaves-table">
+      <i class="fas fa-users"></i>
+      <div class="info">
+        <h3>Approved Leaves</h3>
+        <p>8</p>
+      </div>
+    </div>
+    <div class="card" data-table="rejected-leaves-table">
+      <i class="fas fa-th-large"></i>
+      <div class="info">
+        <h3>Rejected Leaves</h3>
+        <p>5</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="tables">
+    <!-- Pending Leaves Table -->
+    <h3 id="pending-leaves-title" style="display:none;">Pending Leaves</h3>
+    <table id="pending-leaves-table" class="operations-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Leave Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>Medical</td>
+          <td>2024-10-01</td>
+          <td>2024-10-07</td>
+          <td>Doctor's advice</td>
+          <td>
+            <button class="approve-btn">Approve</button>
+            <button class="disapprove-btn">Disapprove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Approved Leaves Table -->
+    <h3 id="approved-leaves-title" style="display:none;">Approved Leaves</h3>
+    <table id="approved-leaves-table" class="operations-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Leave Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jane Smith</td>
+          <td>Vacation</td>
+          <td>2024-09-15</td>
+          <td>2024-09-25</td>
+          <td>Annual leave</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Rejected Leaves Table -->
+    <h3 id="rejected-leaves-title" style="display:none;">Rejected Leaves</h3>
+    <table id="rejected-leaves-table" class="operations-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Leave Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Michael Brown</td>
+          <td>Sick Leave</td>
+          <td>2024-08-05</td>
+          <td>2024-08-12</td>
+          <td>Insufficient documentation</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+      
+      <div class="recent-leaves">
+        <h3>Recent Leaves</h3>
+        <table id="recent-leaves-table" class="operations-table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Employee</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Action</th> <!-- For Edit button -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Recent leaves will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
