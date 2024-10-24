@@ -1,0 +1,25 @@
+{% extends "empindex.html" %}
+
+{% block content %}
+<div class="recent-leaves">
+    <h3>Your Recent Leaves</h3>
+    <table class="leaves-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Leave Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leave in leaves %}
+            <tr>
+                <td>{{ leave.date }}</td>
+                <td>{{ leave.leave_type }}</td>
+                <td>{{ leave.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

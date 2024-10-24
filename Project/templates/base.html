@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminpage/styles2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='adminpage/styles.css') }}">
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>EMPLOYEE LEAVE MANAGEMENT</h2>
+        <ul>
+            <li><i class="fas fa-tachometer-alt"></i> <a href="{{ url_for('adsecemplist') }}">Dashboard</a></li>
+            <li><i class="fas fa-users"></i> <a href="{{ url_for('adsecemplist') }}">Employee Section</a></li>
+            <li><i class="fas fa-calendar-alt"></i> <a href="{{ url_for('adrecent') }}">Recent Leaves</a></li> <!-- Fix Here -->
+            <li><i class="fas fa-user-shield"></i> <a href="{{ url_for('admanage') }}">Manage Admin</a></li>
+        </ul>        
+        <div class="logoutt-container">
+            <li><i class="fas fa-sign-out-alt"></i> <a href="{{ url_for('logout') }}" class="logout-btnn">Logout</a></li>
+        </div>
+    </div>
+   
+    <div class="main-content">
+        <div class="header">
+            <div class="breadcrumb">
+                <span>Home / Admin's Dashboard</span>
+            </div>
+            <div class="admin">
+                <img alt="Admin Avatar" src="https://placehold.co/40x40"/>
+                <span>ADMIN</span>
+            </div>
+        </div>
+
+        <!-- Content from child templates will be inserted here -->
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

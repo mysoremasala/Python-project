@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homepage/landing.css') }}">
+    <script src="{{ url_for('static', filename='emppage/index.js') }}" defer></script>
+
+</head>
+
+  
+<body>
+    <div class="sidebar">
+        <h2>EMPLOYEE LEAVE MANAGEMENT</h2>
+        <ul>
+            <li><i class="fas fa-tachometer-alt"></i> <a href="{{ url_for('apply_leave') }}">Dashboard</a></li>
+            <li><i class="fas fa-users"></i> <a href="{{ url_for('recent_leaves') }}">Recent Status</a></li>
+            <li><i class="fas fa-users"></i> <a href="{{ url_for('pend') }}"> Leaves Status</a></li>
+        </ul>
+        <div class="logoutt-container">
+            <li><i class="fas fa-sign-out-alt"></i> <a href="{{ url_for('logout') }}" class="logout-btnn">Logout</a></li>
+        </div>
+    </div>
+   
+    <div class="main-content">
+        <div class="header">
+            <div class="breadcrumb">
+                <span>Home / User Dashboard</span>
+            </div>
+            <div class="admin">
+                <img alt="Admin Avatar" src="https://placehold.co/40x40"/>
+                <span>USER</span>
+            </div>
+        </div>
+        
+
+  
+
+        <!-- Content from child templates will be inserted here -->
+        {% block content %}{% endblock %}
+    </div>
+
+
+</body>
+</html>

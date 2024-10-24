@@ -1,0 +1,466 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fe;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #a8b2d1;
+    padding-top: 20px;
+    z-index: 1000;
+}
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 55px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    
+}
+.sidebar ul li {
+    
+    
+   
+    padding: 20px 20px;
+    padding-left: 35px;
+    
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    
+}
+.sidebar ul li:hover, .sidebar ul li.active {
+    background-color: #4318ff;
+   color: #ffffff;
+}
+.sidebar ul li i {
+    margin-right: 10px;
+}
+.sidebar ul li ul {
+    display: none;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #a8b2d1;
+    z-index: 1001;
+    padding-top: 12px;
+}
+.sidebar ul li.active ul {
+    display: block;
+}
+.sidebar ul li ul li {
+    padding: 10px 20px;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .breadcrumb {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+.header .breadcrumb a {
+    color: #8e44ad;
+    text-decoration: none;
+}
+.header .admin {
+    display: flex;
+    align-items: center;
+}
+.header .admin img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.header .admin span {
+    background-color: #8e44ad;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.card i {
+    font-size: 30px;
+    color: #4c1fa7;
+    margin-right: 20px;
+}
+.card .info {
+    flex: 1;
+}
+.card .info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+.card .info p {
+    margin: 5px 0 0;
+    font-size: 24px;
+    color: #2c3e50;
+}
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.approve-btn, .disapprove-btn, .edit-btn {
+    padding: 5px 5px;
+   
+    border-radius: 1px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .approve-btn {
+    background-color: #2ecc71; /* Green */
+    color: white;
+  }
+  
+  .disapprove-btn {
+    background-color: #e74c3c; /* Red */
+    color: white;
+  }
+  
+  .edit-btn {
+    background-color: #3498db; /* Blue */
+    color: white;
+  }
+  
+  .approve-btn:hover, .disapprove-btn:hover, .edit-btn:hover {
+    opacity: 0.8;
+  }
+  /* General table styling */
+.operations-table {
+    width: 100%; /* Full width of container */
+    max-width: 100%; /* Prevent overflow */
+    border-collapse: collapse; /* Remove gaps between cells */
+    margin-top: 20px; /* Add space between cards and table */
+    background-color: #fff; /* White background */
+    border: 1px solid #dfdfdf; /* Light border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  
+  }
+  
+  /* Table headers */
+  .operations-table th {
+    background-color: #5400e4; /* Light background */
+    color: #ffffff; /* Dark text */
+    padding: 10px; /* Padding inside cells */
+    text-align: left; /* Align text to the left */
+    border-bottom: 2px solid #ddd; /* Bottom border for header */
+    font-weight: 500; /* Medium weight font */
+    
+  }
+  
+  /* Table cells */
+  .operations-table td {
+    padding: 10px; /* Padding inside cells */
+    border-bottom: 1px solid #ddd; /* Divider between rows */
+    color: #000000; /* Light text color */
+  
+  }
+  
+  /* Table row hover effect */
+  .operations-table tr:hover {
+    background-color: #f4f7fe; /* Row highlight on hover */
+  }
+  
+  /* Ensure the size is fixed and consistent */
+  .operations-table th, .operations-table td {
+    width: 20%; /* Equal width for each column */
+    min-width: 150px; /* Ensure columns don't shrink too much */
+    max-width: 200px; /* Set max width for columns */
+  }
+  
+  /* Buttons inside tables */
+  .approve-btn, .disapprove-btn, .edit-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+  }
+  
+  .approve-btn {
+    display: inline;
+    padding: 10px 5px;
+    background-color: #2ecc71; /* Green */
+    color: white;
+  }
+  
+  .disapprove-btn {
+    padding: 10px 5px;
+    background-color: #e74c3c; /* Red */
+    color: white;
+  }
+  
+  .edit-btn {
+    background-color: #3498db; /* Blue */
+    color: white;
+  }
+  
+  .approve-btn:hover, .disapprove-btn:hover, .edit-btn:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+  }
+  /* Make buttons inline and side by side */
+  #employee-list {
+    margin-top: 20px;
+  }
+  
+  #employee-list h3 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #employee-list table th, #employee-list table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  #employee-list table th {
+    background-color: #5c00b9;
+    font-weight: 500;
+  }
+  
+  #employee-list table tr:hover {
+    background-color: #f4f7fe;
+  }
+  .add-btn, .save-btn, .remove-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  .add-btn {
+    background-color: #3498db; /* Blue for Add button */
+    color: white;
+  }
+  
+  .save-btn {
+    background-color: #2ecc71; /* Green for Save button */
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: #e74c3c; /* Red for Remove button */
+    color: white;
+  }
+  
+  .add-btn:hover, .save-btn:hover, .remove-btn:hover {
+    opacity: 0.8; /* Slight fade on hover */
+  }
+  
+  /* Add employee form styling */
+  #add-employee-form label {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  #add-employee-form input {
+    padding: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  #rej{
+
+    color: red;
+  }
+
+
+
+  /*leavetyeps*/
+  .add-btn, .save-btn, .remove-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  .add-btn {
+    background-color: #3498db; /* Blue for Add button */
+    color: white;
+  }
+  
+  .save-btn {
+    background-color: #2ecc71; /* Green for Save button */
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: #e74c3c; /* Red for Remove button */
+    color: white;
+  }
+  
+  .add-btn:hover, .save-btn:hover, .remove-btn:hover {
+    opacity: 0.8; /* Slight fade on hover */
+  }
+  
+  /* Add leave type form styling */
+  #add-leave-type-form label {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  #add-leave-type-form input {
+    padding: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  
+
+
+
+  /*admin section*/
+  .add-btn, .save-btn, .remove-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  .add-btn {
+    background-color: #3498db; /* Blue for Add button */
+    color: white;
+  }
+  
+  .save-btn {
+    background-color: #2ecc71; /* Green for Save button */
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: #e74c3c; /* Red for Remove button */
+    color: white;
+  }
+  
+  .add-btn:hover, .save-btn:hover, .remove-btn:hover {
+    opacity: 0.8; /* Slight fade on hover */
+  }
+  
+  /* Add admin form styling */
+  #add-admin-form label {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  #add-admin-form input {
+    padding: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  .approve-btn, .disapprove-btn, .edit-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.approve-btn {
+    background-color: #2ecc71; /* Green for Approve */
+    color: white;
+}
+
+.disapprove-btn {
+    background-color: #e74c3c; /* Red for Reject */
+    color: white;
+}
+
+.edit-btn {
+    background-color: #3498db; /* Blue for Edit */
+    color: white;
+}
+
+.approve-btn:hover, .disapprove-btn:hover, .edit-btn:hover {
+    opacity: 0.8; /* Slight fade on hover */
+}
+
+
+.sidebar ul li a{
+
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.logoutt-container  {
+    padding: 20px 20px;
+
+    text-decoration: none;
+    margin-top: 375px; /* Ensures the logout button stays at the bottom */
+   list-style: none;
+   padding-left: 50px;
+   font-size: medium;
+ 
+}
+
+.logout-btnn {
+    text-decoration: none; /* Remove underline from link */
+    color: #a8b2d1; /* Set default text color */
+    padding: 10px; /* Add some padding for better click area */
+}
+
+
+.logoutt-container:hover{
+  border-radius: 7px;
+    
+    background-color: #5400e4;
+    color: white;
+    cursor: pointer;
+}

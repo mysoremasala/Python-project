@@ -1,0 +1,235 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fe;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #a8b2d1;
+    padding-top: 20px;
+    z-index: 1000;
+}
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 55px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    
+}
+.sidebar ul li {
+    
+    
+   
+    padding: 20px 20px;
+    padding-left: 35px;
+    
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    
+}
+.sidebar ul li:hover, .sidebar ul li.active {
+    background-color: #4318ff;
+   color: #ffffff;
+}
+.sidebar ul li i {
+    margin-right: 10px;
+}
+.sidebar ul li ul {
+    display: none;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #a8b2d1;
+    z-index: 1001;
+    padding-top: 12px;
+}
+.sidebar ul li.active ul {
+    display: block;
+}
+.sidebar ul li ul li {
+    padding: 10px 20px;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .breadcrumb {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+.header .breadcrumb a {
+    color: #8e44ad;
+    text-decoration: none;
+}
+.header .admin {
+    display: flex;
+    align-items: center;
+}
+.header .admin img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.header .admin span {
+    background-color: #8e44ad;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.card i {
+    font-size: 30px;
+    color: #4c1fa7;
+    margin-right: 20px;
+}
+.card .info {
+    flex: 1;
+}
+.card .info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+.card .info p {
+    margin: 5px 0 0;
+    font-size: 24px;
+    color: #2c3e50;
+}
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* General form styling */
+.leave-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+  }
+  
+  .leave-form h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .leave-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .leave-form select,
+  .leave-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  
+  .leave-form textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .leave-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .leave-form button:hover {
+    background-color: #218838;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .leave-form {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+  
+
+  .recent-leaves {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaves-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.leaves-table th, .leaves-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.leaves-table th {
+    background-color: #28a745;
+    color: white;
+}
+
+.leaves-table td {
+    background-color: #fff;
+}
+
+.leaves-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
