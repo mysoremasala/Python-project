@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
-import MySQLdb
 import random
 import pyrebase
 from config import firebaseConfig
@@ -13,6 +12,7 @@ app.secret_key = 'pythonproject24'
 firebase = pyrebase.initialize_app(config=firebaseConfig)
 auth = firebase.auth()
 db = firebase.database()
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -20,9 +20,12 @@ def login():
         if request.form.get('login-email'):  # Admin form
             return redirect('/admin_dashboard')
         elif request.form.get('signup-email'):  # User form
+            session.pop('name', None)
+            session['name'] = request.form.get('signup-email')  # Corrected assignment
             return redirect('/employee_dashboard')
     
     return render_template('index.html')
+
 
 
 @app.route('/admin_dashboard')
@@ -95,6 +98,31 @@ def add_emp():
         print(f"Error occurred while adding employee: {e}")  # More specific error logging
         return redirect('/employee_section')
 
+
+from flask import request, jsonify
+
+@app.route("/add_leave", methods=['POST'])
+def add_leave():
+    data = request.get_json()  # Get JSON data from the request
+    if data:
+        # Ensure all necessary data is present
+        leave_type = data.get("type", "")
+        employee_name = data.get("name", "")
+        start_date = data.get("start", "")
+        end_date = data.get("end", "")
+        
+        # Save the data to Firebase
+        leave_data = {
+            "type": leave_type,
+            "name": employee_name,
+            "start": start_date,
+            "end": end_date
+        }
+        
+        db.child("leaves").child(employee_name).set(leave_data)  # Use employee name as key or modify as needed
+        return jsonify({"message": "Leave application submitted successfully!"}), 200
+
+    return jsonify({"message": "Failed to submit leave application!"}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

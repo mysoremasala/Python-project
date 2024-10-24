@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Management</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='emppage/emp.css') }}">
-    <script src="{{ url_for('static', filename='emppage/index.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='emppage/emp.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  
 
 {% extends "employee/empindex.html" %}
 
 {% block content %}
+
 <div class="dashboard-cards">
   <div class="card" data-table="pending-leaves-table">
     <i class="fas fa-briefcase"></i>
@@ -24,8 +24,8 @@
   <div class="card" data-table="approved-leaves-table">
     <i class="fas fa-users"></i>
     <div class="info">
-      <h3>Available Paid Leaves</h3>
-      <p>8</p>
+      <h3>Available Leaves</h3>
+      <p>2</p>
     </div>
   </div>
   <div class="card" data-table="rejected-leaves-table">
@@ -36,11 +36,17 @@
     </div>
   </div>
 </div>
+
 <!-- Leave Application Form -->
 <div class="leave-form-container">
   <h2 class="form-title">Apply for a Leave</h2>
   <form id="leave-application-form" class="leave-form">
     
+    <div class="form-group">
+      <label for="employee-name">Your Name:</label>
+      <input type="text" id="employee-name" name="employee-name" required>
+    </div>
+
     <div class="form-group">
       <label for="leave-type">Leave Type:</label>
       <select id="leave-type" name="leave-type" required>
@@ -76,35 +82,36 @@
 </div>
 
 <script>
-  const leaveType = document.getElementById('leave-type');
-  const otherReasonSection = document.getElementById('other-reason-section');
-  const form = document.getElementById('leave-application-form');
+$(document).ready(function() {
+  $('#leave-application-form').on('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-  leaveType.addEventListener('change', function() {
-    if (this.value === 'other') {
-      otherReasonSection.style.display = 'block';
-    } else {
-      otherReasonSection.style.display = 'none';
-    }
+    // Gather form data
+    const formData = {
+      type: $('#leave-type').val(),
+      name: $('#employee-name').val(),
+      start: $('#start-date').val(),
+      end: $('#end-date').val()
+    };
+
+    // Send data to the Flask backend
+    $.ajax({
+      url: '/add_leave',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(formData),
+      success: function(response) {
+        alert(response); // Display success message
+        $('#leave-application-form')[0].reset(); // Reset the form
+      },
+      error: function(xhr, status, error) {
+        alert('Error: ' + xhr.responseText); // Display error message
+      }
+    });
   });
-
-  form.addEventListener('submit', function(event) {
-    const startDate = new Date(document.getElementById('start-date').value);
-    const endDate = new Date(document.getElementById('end-date').value);
-
-    if (leaveType.value === 'other' && document.getElementById('other-reason').value.trim() === '') {
-      alert('Please provide a reason for the other leave type.');
-      event.preventDefault();
-    }
-
-    if (endDate < startDate) {
-      alert('End date cannot be before the start date.');
-      event.preventDefault();
-    }
-  });
+});
 </script>
 
 {% endblock %}
-
 </body>
 </html>
