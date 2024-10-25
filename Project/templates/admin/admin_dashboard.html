@@ -1,3 +1,10 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+
 {% extends "admin/admin_dash.html" %}
 
 {% block title %}Admin Dashboard{% endblock %}
@@ -108,23 +115,59 @@
   </div>
   
       
-      <div class="recent-leaves">
-        <h3>Recent Leaves</h3>
-        <table id="recent-leaves-table" class="operations-table">
-            <thead>
-                <tr>
-                    <th>Sr No</th>
-                    <th>Employee</th>
-                    <th>Leave Type</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Reason</th>
-                    <th>Action</th> <!-- For Edit button -->
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Recent leaves will be inserted here dynamically -->
-            </tbody>
-        </table>
-    </div>
+     <div class="recent-leaves">
+ <div class="recent-leaves">
+  <h3>Recent Leaves</h3>
+  <table id="recent-leaves-table" class="operations-table">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Employee</th>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Action</th> <!-- For Edit button -->
+      </tr>
+    </thead>
+    <tbody>
+{% set sr_no = 1 %}
+{% for key, leave in leaves.items() %}
+  {% if leave.status != "approved" %}
+  <tr>
+    <td>{{ sr_no }}</td>
+    <td>{{ leave.name }}</td>
+    <td>{{ leave.type }}</td>
+    <td>{{ leave.start }}</td>
+    <td>{{ leave.end }}</td>
+    <td>{{ leave.reason if leave.type == 'other' else 'N/A' }}</td>
+    <td>
+      <button class="edit-btn" data-id="{{ leave.id }}" onclick="approveLeave('{{ leave.id }}')">Approve</button>
+    </td>
+  </tr>
+  {% set sr_no = sr_no + 1 %}
+  {% endif %}
+{% endfor %}
+</tbody>
+  </table>
+</div>
+<script>
+function approveLeave(leaveId) {
+    $.ajax({
+        url: '/approve_leave',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ id: leaveId, status: 'approved' }),
+        success: function(response) {
+            alert('Leave approved successfully!');
+            // Optionally, refresh the page or update the UI here
+        },
+        error: function(xhr) {
+            alert('Failed to approve leave: ' + xhr.responseJSON.message);
+        }
+    });
+}
+</script>
+
 {% endblock %}
+
